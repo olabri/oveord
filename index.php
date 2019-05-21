@@ -1,4 +1,14 @@
 <?php
+
+/**
+ * @package     kjønnsopinion
+ * @author      Olav Bringedal (olav@jaggu.org)
+ * @copyright   (C) 2019. All rights reserved.
+ * @license     http://www.gnu.org/licenses/old-licenses/gpl-2.0-standalone.html
+ * @link        http://jaggu.org/gloser
+ */
+
+ 
 $ord=json_decode(file_get_contents("ord.json"),true);
 
 require_once("util.php");
@@ -28,13 +38,11 @@ if (!isset($_REQUEST['gjeldende_kjonn'])) {
 	$gjeldende_ord=strtolower($_REQUEST['gjeldende']);
 	$gjeldende_kjonn=strtolower($_REQUEST['gjeldende_kjonn']);
 	// putt inn i db
-  $sql = new Db();
+  $sql = new Db("ord.sqlite"); // flytt denne til en annen katalog om du har den kjær!
   $sql->connect();
 
   print ("setter $gjeldende_ord til $gjeldende_kjonn");
   $sqlquery = "INSERT INTO ord (ord, kjonn) values ('$gjeldende_ord', '$gjeldende_kjonn')";
   $query = $sql->query($sqlquery);
-
-
 
 }

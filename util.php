@@ -5,9 +5,9 @@ class Db {
   public $file;
   private $db;
 
-  public function __construct() {
+  public function __construct($file= "ord.sqlite") {
     global $env;
-    $this->file = "ord.sqlite";
+    $this->file = $file;
   }
 
   public function connect($file = false){
